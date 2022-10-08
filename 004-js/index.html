@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+    <title>Introdução ao JS</title>
+    <script>
+        function carregarDados() {
+            // const firstName = document.getElementById('nomePessoa').value;
+            const firstName = document.cadastro.nome.value;
+
+            // const lastName = document.getElementById('sobrenomePessoa').value;
+            const lastName = document.cadastro.sobrenome.value;
+
+            console.log(firstName, lastName);
+
+            // Template literals
+            const message = `Pessoa inserida com sucesso: ${firstName} ${lastName}!`;
+
+            document.getElementById('dados').innerHTML = message;
+
+            // Object literals
+            const person = {
+                id: 1,
+                firstName,
+                lastName
+            }
+
+            console.log(person);
+
+        }
+    </script>
+</head>
+<body>
+    <script>
+        document.write('<h1>Olá mundo!</h1>');
+    </script>
+    
+    <div id="dados"></div>
+
+    <form action="/cadastrar" method="get" name="cadastro" onsubmit="return false">
+        <input type="text" name="nome" id="nomePessoa">
+
+        <input type="text" name="sobrenome" id="sobrenomePessoa">
+
+        <input type="button" value="Cadastrar" onclick="carregarDados()">
+
+        <input type="submit" value="Submeter Cadastro">
+    </form>
+</body>
+</html>
