@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./app-doacao.sqlite"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Estado {
