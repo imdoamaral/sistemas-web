@@ -8,6 +8,7 @@ export class GetAllCidadesController {
             select: {
                 id: true,
                 nome: true,
+                created_at: true,
                 estado: true
             }
         });
