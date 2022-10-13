@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import api from '../../services/api';
 
-interface EstadoModel {
+export interface EstadoModel {
     id: number;
     nome: string;
     sigla: string;
@@ -36,13 +36,25 @@ const ListEstados = () => {
         <div>
             <h2>Lista de Estados</h2>
     
-            <ul>
-                { estados.map(item => (
-    
-                    <li key={item.id}>{item.nome}-{item.sigla}</li>
-    
-                )) }
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Criação</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    { estados.map(item => (
+                        <tr>
+                            <td>{item.id}</td>
+                            <td>{item.nome}</td>
+                            <td>{item.created_at}</td>
+                        </tr>
+                    )) }
+                </tbody>
+            </table>
         </div>
     );
 }
