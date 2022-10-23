@@ -29,6 +29,32 @@ const ListCidades = () => {
             });
     }
 
+    const handleDeleteCidade = async(id : number) => {
+
+        if(!window.confirm('Confirma a exclusão da cidade?')) {
+            return;
+        }
+
+        const data = {
+            id
+        }
+
+        try {
+            await api.delete('/cidades', {
+                data: {
+                    data
+                }
+            });
+            window.alert('Cidade excluída com sucesso.');
+
+            setCidades(cidades.filter(item => item.id !== id)); // wtf is this
+
+        } catch (error) {
+            window.alert('Erro ao excluir a cidade.');
+            console.error(error);
+        }
+    }
+
     return(
 
         <div>
@@ -41,6 +67,7 @@ const ListCidades = () => {
                         <th>Estado</th>
                         <th>Criação</th>
                         <th>Ação</th>
+                        <th>Excluir</th>
                     </tr>
                 </thead>
 
@@ -48,10 +75,17 @@ const ListCidades = () => {
                     { cidades.map(item => (
                         <tr>
                             <td>{item.id}</td>
-                            <td><Link to={`/cidades/show/${item.id}`}>{item.nome}</Link></td>
+                            <td>
+                                <Link to={`/cidades/show/${item.id}`}>{item.nome}</Link>
+                            </td>
                             <td>{item.estado.nome} - {item.estado.sigla}</td>
                             <td>{item.created_at}</td>
-                            <td><Link to={`/cidades/show/${item.id}`}>Visualizar</Link></td>
+                            <td>
+                                <Link to={`/cidades/show/${item.id}`}>Visualizar</Link>
+                            </td>
+                            <td>
+                                <button onClick={event => handleDeleteCidade(item.id)}>Excluir</button>
+                            </td>
                         </tr>
                     )) }
                 </tbody>

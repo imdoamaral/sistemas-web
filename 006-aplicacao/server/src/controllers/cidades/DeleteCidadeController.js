@@ -4,7 +4,8 @@ export class DeleteCidadeController {
 
     async handle(request, response) {
 
-        const { id } = request.body;
+        let { id } = request.body.data;
+        id = parseInt(id);
 
         try {
             const cidade = await prismaClient.cidade.delete({
@@ -16,11 +17,9 @@ export class DeleteCidadeController {
             return response.json(cidade);
 
         } catch (error) {
-            console.log('[DeleteCidadeController] Cidade id does not exist.');
+            console.error(error);
 
-            return response.status(400).json({
-                message: 'Cidade id does not exist.'
-            });
+            return response.status(400).json(error);
         }
     }
 }
