@@ -14,7 +14,7 @@ model Estado {
   id         Int      @id @default(autoincrement())
   nome       String
   sigla      String
-  created_At DateTime @default(now())
+  created_at DateTime @default(now())
 
   cidade Cidade[]
 
