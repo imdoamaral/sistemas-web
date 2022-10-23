@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import api from '../../services/api';
 
 export interface EstadoModel {
@@ -42,6 +43,7 @@ const ListEstados = () => {
                         <th>Id</th>
                         <th>Nome</th>
                         <th>Criação</th>
+                        <th>Ação</th>
                     </tr>
                 </thead>
 
@@ -51,6 +53,7 @@ const ListEstados = () => {
                             <td>{item.id}</td>
                             <td>{item.nome}</td>
                             <td>{item.created_at}</td>
+                            <td><Link to={`/estados/show/${item.id}`}>Visualizar</Link></td>
                         </tr>
                     )) }
                 </tbody>
