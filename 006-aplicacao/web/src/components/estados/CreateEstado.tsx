@@ -4,6 +4,7 @@ import api from "../../services/api";
 
 const CreateEstado = () => {
 
+    // State -> armazena os dados dos estados (uf)
     const [ nome, setNome ] = useState('');
     const [ sigla, setSigla ] = useState('');
 

@@ -12,8 +12,10 @@ interface CidadeModel {
 
 const ListCidades = () => {
 
+    // State -> armazena os dados das cidades
     const [ cidades, setCidades ] = useState<CidadeModel[]>([]);
 
+    // Effect -> carrega os dados das cidades
     useEffect(() => {
         loadData();
     }, []);
