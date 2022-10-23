@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import CreateCidade from './components/cidades/CreateCidade';
 import ListCidades from './components/cidades/ListCidades';
+import ShowCidade from './components/cidades/ShowCidade';
 import CreateEstado from './components/estados/CreateEstado';
 import ListEstados from './components/estados/ListEstados';
 import ShowEstado from './components/estados/ShowEstado';
@@ -24,7 +25,8 @@ const AppRoutes = () => {
                 <Route path='/estados/create' element={<CreateEstado />} />
                 <Route path='/estados/show/:id' element={<ShowEstado />} />
                 <Route path='/estados/update/:id' element={<UpdateEstado />} />
-                <Route path='/cidade/create' element={<CreateCidade />} />
+                <Route path='/cidades/create' element={<CreateCidade />} />
+                <Route path='/cidades/show/:id' element={<ShowCidade />}/>
 
             </Routes>
 

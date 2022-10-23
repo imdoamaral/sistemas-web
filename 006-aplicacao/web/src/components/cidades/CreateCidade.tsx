@@ -1,14 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
+import { EstadoModel } from "../estados/ListEstados";
+import SelectEstados from "../estados/SelectEstados";
 
 const CreateCidade = () => {
+
+    const navigate = useNavigate();
 
     // State -> armazena os dados das cidades
     const [ nome, setNome ] = useState('');
     const [ estadoId, setEstadoId ] = useState(0);
 
-    const navigate = useNavigate();
+    const [ estados, setEstados ] = useState<EstadoModel[]>([]);
+
+    // Effect -> carrega os dados dos Estados
+    useEffect(() => {
+        api.get('/estados')
+            .then(response => {
+                setEstados(response.data);
+            })
+    }, []);
 
     const handleNewCidade = async(event: React.FormEvent<HTMLFormElement>) => {
 
@@ -49,7 +61,7 @@ const CreateCidade = () => {
                 </div>
 
                 <div>
-                    <label htmlFor="EstadoId"></label>
+                    <label htmlFor="EstadoId">EstadoId</label>
                     <input 
                         type="text" 
                         name="estadoId" 
@@ -59,6 +71,28 @@ const CreateCidade = () => {
                         placeholder='Estado ID da cidade' 
                     />
                 </div>
+
+                <div>
+                    <select 
+                        name="estado" 
+                        id="estado"
+                        value={estadoId}
+                        onChange={event => setEstadoId(parseInt(event.target.value))}
+                    >
+                        <option value="0" selected>Selecione</option>
+
+                        {
+                            estados.map(item => (
+                                <option value={item.id}>{item.nome}</option>
+                            ))
+                        }
+                    </select>
+                </div>
+
+                {/* <SelectEstados
+                    id={estadoId}
+                    setId={setEstadoId} 
+                /> */}
 
                 <button type="submit">Cadastrar</button>
                 <button type="reset">Limpar</button>
